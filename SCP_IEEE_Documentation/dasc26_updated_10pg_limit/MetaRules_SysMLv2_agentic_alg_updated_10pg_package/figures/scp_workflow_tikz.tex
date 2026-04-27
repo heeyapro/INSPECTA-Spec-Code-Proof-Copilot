@@ -1,0 +1,47 @@
+\begin{tikzpicture}[
+  font=\scriptsize,
+  >=Stealth,
+  node distance=4.5mm and 6mm,
+  every node/.style={align=center},
+  block/.style={draw, rounded corners=2pt, thick, fill=cyan!15, inner sep=3pt, minimum height=8mm},
+  tool/.style={draw, rounded corners=2pt, thick, fill=orange!22, inner sep=3pt, minimum height=8mm},
+  gate/.style={diamond, draw, thick, aspect=1.8, fill=yellow!30, inner sep=1pt},
+  err/.style={draw, rounded corners=2pt, thick, fill=red!18, inner sep=3pt},
+  outblock/.style={draw, rounded corners=2pt, thick, fill=green!22, inner sep=3pt},
+  line/.style={->, thick},
+  label/.style={font=\tiny, inner sep=1pt}
+]
+
+\node[block, text width=2.85cm] (inputs)
+  {Inputs: English requirements\\SysML v2 models\\curated Meta-Rules};
+\node[block, text width=2.85cm, below=of inputs] (parse)
+  {Parse \& transform\\worker-agent execution plans};
+\node[block, text width=2.85cm, below=of parse] (repair)
+  {Repair loop\\judge agent + minimal hints};
+
+\node[tool, text width=1.65cm, right=12mm of parse] (spec)
+  {SysML v2\\GUMBO spec};
+\node[gate, text width=1.45cm, right=9mm of spec] (valid)
+  {Valid?\\Proof};
+\node[outblock, text width=1.95cm, right=10mm of valid] (code)
+  {Verified\\system code};
+\node[err, text width=1.55cm, below=8mm of valid] (errors)
+  {Report\\errors};
+
+\node[tool, fill=orange!40, text width=3.1cm, above=4.5mm of valid] (toolchain)
+  {Sireum CLI + HAMR/Logika\\+ minimal human review};
+
+\draw[line] (inputs) -- (parse);
+\draw[line] (parse) -- (spec);
+\draw[line] (spec) -- (valid);
+\draw[line] (valid) -- node[label, above] {yes} (code);
+\draw[line] (valid) -- node[label, right] {no} (errors);
+\draw[line] (errors.west) -| (repair.east);
+\draw[line] (repair.west) -- ++(-5mm,0) |- (parse.west);
+\draw[line] (repair.west) -- ++(-5mm,0) |- (inputs.west);
+\draw[line] (code) -- ++(6mm,0) node[label, right] {accept};
+
+\node[draw, dashed, rounded corners=2pt, thick, fit=(inputs)(parse)(repair)(spec)(valid)(code)(errors)(toolchain), inner sep=4mm,
+  label={[font=\footnotesize\bfseries]above:Copilot loop (multi-agent)}] (box) {};
+
+\end{tikzpicture}

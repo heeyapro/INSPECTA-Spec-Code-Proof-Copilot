@@ -1,0 +1,55 @@
+\begin{tikzpicture}[
+  font=\scriptsize,
+  >=Stealth,
+  node distance=4.5mm and 6mm,
+  every node/.style={align=center},
+  block/.style={draw, rounded corners=2pt, thick, fill=cyan!15, inner sep=3pt, minimum height=8mm},
+  muted/.style={draw, rounded corners=2pt, thick, fill=gray!15, inner sep=3pt, minimum height=8mm},
+  eval/.style={draw, rounded corners=2pt, thick, fill=orange!25, inner sep=3pt, minimum height=8mm},
+  gate/.style={diamond, draw, thick, aspect=1.7, fill=gray!18, inner sep=1pt},
+  err/.style={draw, rounded corners=2pt, thick, fill=red!18, inner sep=3pt},
+  outblock/.style={draw, rounded corners=2pt, thick, fill=green!22, inner sep=3pt},
+  memory/.style={draw, rounded corners=2pt, thick, fill=green!12, inner sep=3pt},
+  line/.style={->, thick},
+  label/.style={font=\tiny, inner sep=1pt}
+]
+
+\node[block, text width=2.95cm] (inputs)
+  {Inputs + candidate\\Meta-Rule update};
+\node[muted, text width=2.95cm, below=of inputs] (recommend)
+  {Recommender agent\\separation, code, proof};
+\node[muted, text width=2.95cm, below=of recommend] (parse)
+  {Parse \& transform\\worker-agent plans};
+\node[block, text width=2.95cm, below=of parse] (repair)
+  {Repair planner\\expert hints + verifier feedback};
+
+\node[eval, text width=1.95cm, right=10mm of parse] (golden)
+  {Evaluate against\\golden example};
+\node[gate, text width=1.55cm, right=9mm of golden] (gates)
+  {cosine\\+ proof\\+ approval};
+\node[outblock, text width=1.95cm, right=10mm of gates] (accept)
+  {Accept\\Meta-Rule plan};
+\node[memory, text width=1.95cm, below=5mm of accept] (memory)
+  {Persistent\\copilot memory};
+\node[err, text width=1.75cm, below=8mm of gates] (errors)
+  {Errors /\\metric regression};
+
+\node[eval, fill=orange!40, text width=3.2cm, above=4.5mm of gates] (toolchain)
+  {Sireum CLI + HAMR/Logika\\+ human review};
+
+\draw[line] (inputs) -- (recommend);
+\draw[line] (recommend) -- (parse);
+\draw[line] (parse) -- (repair);
+\draw[line] (parse) -- (golden);
+\draw[line] (golden) -- (gates);
+\draw[line] (gates) -- node[label, above] {better metrics} (accept);
+\draw[line] (accept) -- (memory);
+\draw[line] (gates) -- node[label, right] {no} (errors);
+\draw[line] (errors.west) -| (repair.east);
+\draw[line] (repair.west) -- ++(-5mm,0) |- (inputs.west);
+\draw[line] (memory.south) |- ++(0,-4mm) -| node[label, pos=.25, below] {reuse} (inputs.east);
+
+\node[draw, dashed, rounded corners=2pt, thick, fit=(inputs)(recommend)(parse)(repair)(golden)(gates)(accept)(memory)(errors)(toolchain), inner sep=4mm,
+  label={[font=\footnotesize\bfseries]above:Developer-mode Meta-Rule learning loop}] (box) {};
+
+\end{tikzpicture}

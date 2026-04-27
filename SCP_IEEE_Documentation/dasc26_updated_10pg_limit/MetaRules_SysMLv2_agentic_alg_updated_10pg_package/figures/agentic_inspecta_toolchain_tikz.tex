@@ -1,0 +1,196 @@
+% Merged agentic SCP + INSPECTA high-assurance development figure.
+% Requires:
+%   \usepackage{tikz}
+%   \usetikzlibrary{arrows.meta,calc,positioning,fit,backgrounds,shapes.geometric}
+% Recommended inclusion in an IEEE two-column paper:
+%   \begin{figure*}[t]
+%     \centering
+%     \resizebox{0.96\textwidth}{!}{\input{figures/agentic_inspecta_toolchain_tikz}}
+%     \caption{Agentic SCP/INSPECTA generate--verify--repair workflow.}
+%     \label{fig:agentic-inspecta}
+%   \end{figure*}
+
+\begingroup
+\definecolor{haLine}{RGB}{29,48,83}
+\definecolor{haBlue}{RGB}{218,226,243}
+\definecolor{haGreen}{RGB}{227,243,209}
+\definecolor{haCream}{RGB}{241,238,235}
+\definecolor{haProof}{RGB}{0,176,80}
+\definecolor{haPurple}{RGB}{112,48,160}
+\definecolor{agentBlue}{RGB}{221,235,247}
+\definecolor{agentDark}{RGB}{31,78,121}
+\definecolor{agentOrange}{RGB}{255,229,204}
+\definecolor{agentRed}{RGB}{192,0,0}
+\definecolor{agentYellow}{RGB}{255,242,204}
+
+\tikzset{
+  haBox/.style={draw=haLine, line width=0.58pt},
+  haLayer/.style={haBox, fill=haBlue},
+  haContract/.style={haBox, fill=haGreen},
+  haCode/.style={haBox, fill=haCream},
+  haWhite/.style={haBox, fill=white},
+  haBinary/.style={draw=black, line width=0.58pt, fill=white},
+  haPort/.style={haBox, fill=haBlue},
+  haText/.style={font=\sffamily\fontsize{8.2}{8.9}\selectfont, inner sep=0pt, text=black},
+  haBold/.style={font=\sffamily\bfseries\fontsize{8.2}{8.9}\selectfont, inner sep=0pt, text=black},
+  haProofText/.style={font=\sffamily\fontsize{6.6}{7.0}\selectfont, inner sep=0pt, align=center, text=black},
+  haMicro/.style={font=\sffamily\fontsize{4.5}{5}\selectfont, inner sep=0pt, text=black},
+  haDataArrow/.style={-{Latex[length=5.8pt,width=5.8pt]}, draw=black, line width=1.35pt},
+  haPurpleBoth/.style={{Latex[length=7.0pt,width=7.0pt]}-{Latex[length=7.0pt,width=7.0pt]}, draw=haPurple, line width=2.25pt},
+  haProofArrow/.style={-{Triangle[length=9pt,width=8.5pt]}, draw=haProof, line width=3.35pt,
+    dash pattern=on 4.1pt off 4.1pt, line cap=butt, line join=miter},
+  haDot/.style={circle, fill=black, inner sep=0pt, minimum size=6.2pt},
+  agentPanel/.style={draw=agentDark, rounded corners=3pt, line width=0.85pt, fill=agentBlue!45},
+  agentBlock/.style={draw=agentDark, rounded corners=3pt, line width=0.75pt, fill=white},
+  agentRules/.style={draw=agentDark, rounded corners=3pt, line width=0.75pt, fill=agentYellow},
+  agentDiag/.style={draw=agentRed, rounded corners=3pt, line width=0.75pt, fill=red!7},
+  agentTitle/.style={font=\sffamily\bfseries\fontsize{8.0}{8.6}\selectfont, inner sep=0pt, align=center, text=agentDark},
+  agentText/.style={font=\sffamily\fontsize{6.6}{7.2}\selectfont, inner sep=0pt, align=center, text=black},
+  agentTiny/.style={font=\sffamily\fontsize{5.8}{6.1}\selectfont, inner sep=1pt, align=center, text=black},
+  specArrow/.style={-{Latex[length=6.8pt,width=6.2pt]}, draw=agentDark, line width=1.35pt},
+  guideArrow/.style={-{Latex[length=5.5pt,width=5.0pt]}, draw=haProof!70!black, line width=1.0pt, dotted},
+  repairArrow/.style={-{Latex[length=6.8pt,width=6.2pt]}, draw=haPurple, line width=1.35pt},
+  failArrow/.style={-{Latex[length=6.8pt,width=6.2pt]}, draw=agentRed, line width=1.25pt, dashed},
+  noteText/.style={font=\sffamily\fontsize{5.7}{6.1}\selectfont, inner sep=1pt, align=center, text=black}
+}
+
+\newcommand{\prooficon}[2]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \draw[haBox, fill=white, rounded corners=1.4pt] (4,5) rectangle (22,22);
+    \draw[haBox, fill=white, rounded corners=2.2pt] (0,0) rectangle (26,6);
+    \draw[haBox, fill=white, rounded corners=2.0pt] (0,17) rectangle (10,22);
+    \draw[haBox, fill=white] (13,13.8) circle (3.0);
+    \draw[haBox, fill=white] (13,16.7) -- (9.6,22) -- (13,19.5) -- (16.4,22) -- cycle;
+  \end{scope}}
+
+\begin{tikzpicture}[x=1pt,y=-1pt]
+  \path[use as bounding box] (-168,-4) rectangle (421,334);
+
+  % ---------------- Agentic SCP panel ----------------
+  \draw[agentPanel] (-166,0) rectangle (-12,318);
+  \node[agentTitle] at (-89,12) {Agentic SCP Copilot};
+  \node[agentTiny] at (-89,24) {bounded generate--verify--repair};
+
+  \draw[agentBlock] (-153,35) rectangle (-25,60);
+  \node[agentText] at (-89,47.5) {English requirements\\architecture context};
+
+  \draw[agentBlock] (-153,76) rectangle (-25,121);
+  \node[agentText] at (-89,89) {Specification Agent};
+  \node[agentTiny] at (-89,108) {propose / modify\\SysML v2 + GUMBO};
+
+  \draw[agentRules] (-153,139) rectangle (-25,187);
+  \node[agentText] at (-89,150) {Meta-Rules library};
+  \node[agentTiny] at (-89,166) {verified patterns +\\semantic gates};
+  \node[agentTiny] at (-89,180) {guide generation,\\bound retries};
+
+  \draw[agentBlock] (-153,204) rectangle (-25,249);
+  \node[agentText] at (-89,216) {Repair Agent};
+  \node[agentTiny] at (-89,235) {suggested repair +\\modified plan};
+
+  \draw[agentDiag] (-153,268) rectangle (-25,305);
+  \node[agentText] at (-89,281) {Verifier diagnostics};
+  \node[agentTiny] at (-89,295) {error messages / counterexamples};
+
+  \draw[specArrow] (-89,60) -- (-89,76);
+  \draw[guideArrow] (-89,139) -- (-89,121);
+  \draw[guideArrow] (-89,187) -- (-89,204);
+  \draw[repairArrow] (-25,226) -- (-15,226) -- (-15,99) -- (-25,99);
+  \node[agentTiny, fill=white, inner sep=1pt] at (-15,164) {retry plan};
+  \draw[failArrow] (-89,268) -- (-89,249);
+  \node[agentTiny, fill=white, inner sep=1pt] at (-132,257) {failure signal};
+
+  % ---------------- Original high-assurance layer diagram ----------------
+  \draw[haBinary] (0.00,288.47) rectangle (300.05,318.44);
+  \draw[haWhite] (0.00,0.00) rectangle (300.05,75.48);
+  \draw[haContract] (17.16,24.45) rectangle (116.54,65.64);
+  \draw[haCode] (29.71,45.05) rectangle (105.82,65.64);
+  \draw[haContract] (147.09,24.45) rectangle (246.47,65.64);
+  \draw[haCode] (159.10,45.05) rectangle (235.21,65.64);
+  \draw[haLayer] (0.00,90.23) rectangle (182.95,120.20);
+  \draw[haLayer] (192.14,90.46) rectangle (300.05,120.43);
+  \draw[haWhite] (0.00,137.62) rectangle (253.94,230.61);
+  \draw[haContract] (261.46,137.62) rectangle (300.05,230.61);
+  \draw[haLayer] (15.92,164.88) rectangle (104.61,220.01);
+  \draw[haContract] (20.80,179.97) rectangle (101.79,220.01);
+  \draw[haCode] (28.05,197.74) rectangle (98.31,220.04);
+  \draw[haLayer] (153.11,164.85) rectangle (241.64,219.98);
+  \draw[haContract] (157.99,179.95) rectangle (238.83,219.98);
+  \draw[haCode] (165.24,197.72) rectangle (235.36,220.01);
+  \draw[haLayer] (0.00,245.70) rectangle (300.05,275.67);
+  \draw[haPort] (67.61,80.61) -- (82.98,80.61) -- (79.91,93.31) -- (70.68,93.31) -- cycle;
+  \draw[haPort] (88.04,80.34) -- (103.42,80.34) -- (100.34,93.05) -- (91.12,93.05) -- cycle;
+  \draw[haPort] (125.00,80.50) -- (140.38,80.50) -- (137.30,93.21) -- (128.08,93.21) -- cycle;
+  \draw[haPort] (157.09,80.00) -- (172.46,80.00) -- (169.39,92.70) -- (160.16,92.70) -- cycle;
+  \draw[haPort] (223.19,81.33) -- (238.56,81.33) -- (235.49,94.04) -- (226.26,94.04) -- cycle;
+  \draw[haPort] (83.11,130.13) -- (67.73,130.13) -- (70.81,117.42) -- (80.04,117.42) -- cycle;
+  \draw[haPort] (103.55,129.86) -- (88.17,129.86) -- (91.25,117.15) -- (100.47,117.15) -- cycle;
+  \draw[haPort] (140.77,129.69) -- (125.39,129.69) -- (128.47,116.99) -- (137.69,116.99) -- cycle;
+  \draw[haPort] (172.11,129.75) -- (156.73,129.75) -- (159.81,117.05) -- (169.03,117.05) -- cycle;
+  \draw[haPort] (238.21,131.09) -- (222.83,131.09) -- (225.91,118.38) -- (235.13,118.38) -- cycle;
+  \draw[haPort] (125.65,237.39) -- (141.03,237.39) -- (137.95,250.10) -- (128.73,250.10) -- cycle;
+  \draw[haPort] (267.74,238.70) -- (283.11,238.70) -- (280.04,251.40) -- (270.81,251.40) -- cycle;
+  \draw[haPort] (140.79,283.16) -- (125.41,283.16) -- (128.49,270.45) -- (137.71,270.45) -- cycle;
+  \draw[haPort] (283.11,282.32) -- (267.74,282.32) -- (270.81,269.61) -- (280.04,269.61) -- cycle;
+
+  % Generated candidate specification arrow
+  \draw[specArrow] (-25,99) -- (-12,99) -- (-12,55) -- (16,55);
+  \draw[haPurpleBoth] (113.79,55.35) -- (151.14,55.35);
+  \draw[haPurpleBoth] (112.76,178.44) -- (145.47,178.44);
+  \draw[haProofArrow] (238.83,39.88) -- (362.41,39.88);
+  \draw[haProofArrow] (283.11,99.70) -- (361.96,99.70);
+  \draw[haProofArrow] (288.48,144.50) -- (361.11,144.50);
+  \draw[haProofArrow] (235.21,190.73) -- (362.41,190.73);
+  \draw[haProofArrow] (275.14,258.85) -- (362.41,258.85);
+  \draw[haDataArrow] (75.55,74.27) -- (75.55,151.27);
+  \draw[haDataArrow] (95.99,43.33) -- (95.99,183.79);
+  \draw[haDataArrow] (133.34,58.80) -- (133.34,161.76);
+  \draw[haDataArrow] (163.82,62.58) -- (163.82,167.38);
+  \draw[haDataArrow] (230.59,43.33) -- (230.59,207.38);
+  \draw[haDataArrow] (133.34,223.43) -- (133.34,296.51);
+  \draw[haDataArrow] (275.14,223.43) -- (275.14,296.51);
+  \node[haDot] at (75.55,70.82) {};
+  \node[haDot] at (95.99,39.88) {};
+  \node[haDot] at (133.34,55.35) {};
+  \node[haDot] at (163.82,59.13) {};
+  \node[haDot] at (230.59,39.88) {};
+  \node[haDot] at (133.34,219.98) {};
+  \node[haDot] at (275.14,219.98) {};
+
+  \prooficon{372.97}{28.79}
+  \prooficon{372.52}{87.50}
+  \prooficon{371.67}{132.31}
+  \prooficon{372.97}{179.65}
+  \prooficon{372.97}{247.76}
+
+  % Verification-failure feedback bus.  Successful proof artifacts remain green.
+  \draw[failArrow] (356,39.88) -- (340,39.88) -- (340,323) -- (-18,323) -- (-18,287) -- (-25,287);
+  \node[noteText, fill=white, text=agentRed] at (176,321) {failure diagnostics returned to repair agent};
+  \node[noteText, fill=white] at (321,24) {green dashed: proofs when checks pass};
+
+  % Labels.
+  \node[haText,anchor=west] at (5.95,6.81) {System Architecture Model};
+  \node[haText,anchor=west] at (23.11,31.01) {AGREE/GUMBO Contract};
+  \node[haText,anchor=west] at (47.42,55.41) {Component};
+  \node[haText,anchor=west] at (153.04,31.01) {AGREE/GUMBO Contract};
+  \node[haText,anchor=west] at (176.81,55.41) {Component};
+  \node[haBold,anchor=west] at (5.95,105.61) {HAMR};
+  \node[haText,anchor=west] at (198.09,105.61) {Verified Synthesis};
+  \node[haText,align=left,anchor=west] at (5.95,144.91) {Infrastructure Code\\(defaults to Slang/Scala)};
+  \node[haText,align=left,anchor=west] at (267.41,144.91) {JVM\\seL4};
+  \node[haBold,anchor=west] at (5.95,260.61) {(Verified) Compiler};
+  \node[haText,anchor=west] at (5.95,303.61) {Binary};
+  \node[haText,anchor=west] at (31.11,171.81) {Component Stub};
+  \node[haProofText] at (61.40,186.81) {Logika/Verus\\checkable contracts};
+  \node[haText,align=center] at (63.18,207.50) {Rust/C/Slang};
+  \node[haText,anchor=west] at (168.22,171.81) {Component Stub};
+  \node[haProofText] at (198.40,186.81) {Logika/Verus\\checkable contracts};
+  \node[haText,align=center] at (200.50,207.50) {Rust/C/Slang};
+  \node[haMicro, anchor=south] at (132.70,176.91) {AP};
+  \node[haMicro, anchor=north] at (132.70,179.41) {I};
+  \node[haProofText] at (386.80,64.43) {Compositional\\Correctness\\Proofs};
+  \node[haProofText] at (386.80,119.42) {Verified Code Gen\\Proofs};
+  \node[haProofText] at (386.80,163.94) {Secure Kernel\\Proofs};
+  \node[haProofText] at (386.80,214.64) {Component\\Correctness\\Proofs};
+  \node[haProofText] at (386.80,281.72) {Correspondence\\Proofs};
+\end{tikzpicture}
+\endgroup
