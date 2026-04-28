@@ -68,11 +68,11 @@
 
   % ---------------- Agentic SCP panel ----------------
   \draw[agentPanel] (-166,0) rectangle (-12,318);
-  \node[agentTitle] at (-89,12) {Agentic SCP Copilot};
+  \node[agentTitle] at (-89,12) {Agentic Spec-Code-Proof (SCP) Copilot};
   \node[agentTiny] at (-89,24) {bounded generate--verify--repair};
 
   \draw[agentBlock] (-153,35) rectangle (-25,60);
-  \node[agentText] at (-89,47.5) {English requirements\\architecture context};
+  \node[agentText] at (-89,47.5) {English Requirements\\architecture context};
 
   \draw[agentBlock] (-153,76) rectangle (-25,121);
   \node[agentText] at (-89,89) {Specification Agent};
@@ -88,7 +88,7 @@
   \node[agentTiny] at (-89,235) {suggested repair +\\modified plan};
 
   \draw[agentDiag] (-153,268) rectangle (-25,305);
-  \node[agentText] at (-89,281) {Verifier diagnostics};
+  \node[agentText] at (-89,281) {Verifier Diagnostics};
   \node[agentTiny] at (-89,295) {error messages / counterexamples};
 
   \draw[specArrow] (-89,60) -- (-89,76);
@@ -164,8 +164,8 @@
 
   % Verification-failure feedback bus.  Successful proof artifacts remain green.
   \draw[failArrow] (356,39.88) -- (340,39.88) -- (340,323) -- (-18,323) -- (-18,287) -- (-25,287);
-  \node[noteText, fill=white, text=agentRed] at (176,321) {failure diagnostics returned to repair agent};
-  \node[noteText, fill=white] at (321,24) {green dashed: proofs when checks pass};
+  \node[haText, fill=white, text=agentRed] at (176,324) {Failure diagnostics returned to repair agent};
+  \node[noteText, fill=white] at (305, 28) {Green dashed lines: proofs when Q.E.D.};
 
   % Labels.
   \node[haText,anchor=west] at (5.95,6.81) {System Architecture Model};
