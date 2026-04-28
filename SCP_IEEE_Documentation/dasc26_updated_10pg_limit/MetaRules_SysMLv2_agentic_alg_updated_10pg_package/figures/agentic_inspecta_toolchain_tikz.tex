@@ -100,14 +100,13 @@
   \node[agentTiny, fill=white, inner sep=1pt] at (-132,257) {failure signal};
 
   % ---------------- Original high-assurance layer diagram ----------------
+
   \draw[haBinary] (0.00,288.47) rectangle (300.05,318.44);
   \draw[haWhite] (0.00,0.00) rectangle (300.05,75.48);
   \draw[haContract] (17.16,24.45) rectangle (116.54,65.64);
   \draw[haCode] (29.71,45.05) rectangle (105.82,65.64);
   \draw[haContract] (147.09,24.45) rectangle (246.47,65.64);
   \draw[haCode] (159.10,45.05) rectangle (235.21,65.64);
-  \draw[haLayer] (0.00,90.23) rectangle (182.95,120.20);
-  \draw[haLayer] (192.14,90.46) rectangle (300.05,120.43);
   \draw[haWhite] (0.00,137.62) rectangle (253.94,230.61);
   \draw[haContract] (261.46,137.62) rectangle (300.05,230.61);
   \draw[haLayer] (15.92,164.88) rectangle (104.61,220.01);
@@ -116,7 +115,21 @@
   \draw[haLayer] (153.11,164.85) rectangle (241.64,219.98);
   \draw[haContract] (157.99,179.95) rectangle (238.83,219.98);
   \draw[haCode] (165.24,197.72) rectangle (235.36,220.01);
-  \draw[haLayer] (0.00,245.70) rectangle (300.05,275.67);
+
+  % Generated candidate specification arrows
+\draw[specArrow] (-25,99) -- (-12,99) -- (-12,55) -- (16,55);
+\draw[haPurpleBoth] (113.79,55.35) -- (151.14,55.35);
+\draw[haPurpleBoth] (112.76,178.44) -- (145.47,178.44);
+\draw[haDataArrow] (75.55,74.27) -- (75.55,146.27);
+\draw[haDataArrow] (95.99,43.33) -- (95.99,188.79);
+\draw[haDataArrow] (133.34,58.80) -- (133.34,161.76);
+\draw[haDataArrow] (163.82,62.58) -- (163.82,172.38);
+\draw[haDataArrow] (230.59,43.33) -- (230.59,207.38);
+\draw[haDataArrow] (133.34,223.43) -- (133.34,296.51);
+\draw[haDataArrow] (275.14,223.43) -- (275.14,296.51);
+
+
+
   \draw[haPort] (67.61,80.61) -- (82.98,80.61) -- (79.91,93.31) -- (70.68,93.31) -- cycle;
   \draw[haPort] (88.04,80.34) -- (103.42,80.34) -- (100.34,93.05) -- (91.12,93.05) -- cycle;
   \draw[haPort] (125.00,80.50) -- (140.38,80.50) -- (137.30,93.21) -- (128.08,93.21) -- cycle;
@@ -132,22 +145,17 @@
   \draw[haPort] (140.79,283.16) -- (125.41,283.16) -- (128.49,270.45) -- (137.71,270.45) -- cycle;
   \draw[haPort] (283.11,282.32) -- (267.74,282.32) -- (270.81,269.61) -- (280.04,269.61) -- cycle;
 
-  % Generated candidate specification arrow
-  \draw[specArrow] (-25,99) -- (-12,99) -- (-12,55) -- (16,55);
-  \draw[haPurpleBoth] (113.79,55.35) -- (151.14,55.35);
-  \draw[haPurpleBoth] (112.76,178.44) -- (145.47,178.44);
-  \draw[haProofArrow] (238.83,39.88) -- (362.41,39.88);
-  \draw[haProofArrow] (283.11,99.70) -- (361.96,99.70);
-  \draw[haProofArrow] (288.48,144.50) -- (361.11,144.50);
-  \draw[haProofArrow] (235.21,190.73) -- (362.41,190.73);
-  \draw[haProofArrow] (275.14,258.85) -- (362.41,258.85);
-  \draw[haDataArrow] (75.55,74.27) -- (75.55,151.27);
-  \draw[haDataArrow] (95.99,43.33) -- (95.99,183.79);
-  \draw[haDataArrow] (133.34,58.80) -- (133.34,161.76);
-  \draw[haDataArrow] (163.82,62.58) -- (163.82,167.38);
-  \draw[haDataArrow] (230.59,43.33) -- (230.59,207.38);
-  \draw[haDataArrow] (133.34,223.43) -- (133.34,296.51);
-  \draw[haDataArrow] (275.14,223.43) -- (275.14,296.51);
+  \draw[haLayer] (0.00,90.23) rectangle (182.95,120.20);
+  \draw[haLayer] (192.14,90.46) rectangle (300.05,120.43);
+  \draw[haLayer] (0.00,245.70) rectangle (300.05,275.67);
+  
+ \draw[haProofArrow] (238.83,39.88) -- (362.41,39.88);
+ \draw[haProofArrow] (283.11,99.70) -- (361.96,99.70);
+ \draw[haProofArrow] (288.48,144.50) -- (361.11,144.50);
+ \draw[haProofArrow] (235.21,190.73) -- (362.41,190.73);
+ \draw[haProofArrow] (275.14,258.85) -- (362.41,258.85);
+
+  % Generated candidate specification arrow endpoints
   \node[haDot] at (75.55,70.82) {};
   \node[haDot] at (95.99,39.88) {};
   \node[haDot] at (133.34,55.35) {};
@@ -163,30 +171,30 @@
   \prooficon{372.97}{247.76}
 
   % Verification-failure feedback bus.  Successful proof artifacts remain green.
-  \draw[failArrow] (356,39.88) -- (340,39.88) -- (340,323) -- (-18,323) -- (-18,287) -- (-25,287);
-  \node[haText, fill=white, text=agentRed] at (176,324) {Failure diagnostics returned to repair agent};
+  \draw[failArrow] (356,39.88) -- (340,39.88) -- (340,328) -- (-18,328) -- (-18,287) -- (-25,287);
+  \node[haText, fill=white, text=agentRed] at (176,329) {Failure diagnostics returned to repair agent};
   \node[noteText, fill=white] at (305, 28) {Green dashed lines: proofs when Q.E.D.};
 
   % Labels.
   \node[haText,anchor=west] at (5.95,6.81) {System Architecture Model};
-  \node[haText,anchor=west] at (23.11,31.01) {AGREE/GUMBO Contract};
+  \node[haText,anchor=west] at (23.11,31.01) {GUMBO Contract};
   \node[haText,anchor=west] at (47.42,55.41) {Component};
-  \node[haText,anchor=west] at (153.04,31.01) {AGREE/GUMBO Contract};
+  \node[haText,anchor=west] at (153.04,31.01) {GUMBO Contract};
   \node[haText,anchor=west] at (176.81,55.41) {Component};
   \node[haBold,anchor=west] at (5.95,105.61) {HAMR};
   \node[haText,anchor=west] at (198.09,105.61) {Verified Synthesis};
-  \node[haText,align=left,anchor=west] at (5.95,144.91) {Infrastructure Code\\(defaults to Slang/Scala)};
-  \node[haText,align=left,anchor=west] at (267.41,144.91) {JVM\\seL4};
+  \node[haText,align=left,anchor=west] at (5.95,149.91) {Infrastructure\\Code (Slang/Scala)};
+  \node[haText,align=left,anchor=west] at (267.41,149.91) {seL4};
   \node[haBold,anchor=west] at (5.95,260.61) {(Verified) Compiler};
   \node[haText,anchor=west] at (5.95,303.61) {Binary};
   \node[haText,anchor=west] at (31.11,171.81) {Component Stub};
-  \node[haProofText] at (61.40,186.81) {Logika/Verus\\checkable contracts};
+  \node[haProofText] at (61.40,188.81) {Logika/Verus\\checkable contracts};
   \node[haText,align=center] at (63.18,207.50) {Rust/C/Slang};
   \node[haText,anchor=west] at (168.22,171.81) {Component Stub};
-  \node[haProofText] at (198.40,186.81) {Logika/Verus\\checkable contracts};
+  \node[haProofText] at (198.40,188.81) {Logika/Verus\\checkable contracts};
   \node[haText,align=center] at (200.50,207.50) {Rust/C/Slang};
-  \node[haMicro, anchor=south] at (132.70,176.91) {AP};
-  \node[haMicro, anchor=north] at (132.70,179.41) {I};
+  \node[haText, anchor=south] at (132.70,173.91) {API};
+%  \node[haMicro, anchor=north] at (132.70,179.41) {I};
   \node[haProofText] at (386.80,64.43) {Compositional\\Correctness\\Proofs};
   \node[haProofText] at (386.80,119.42) {Verified Code Gen\\Proofs};
   \node[haProofText] at (386.80,163.94) {Secure Kernel\\Proofs};

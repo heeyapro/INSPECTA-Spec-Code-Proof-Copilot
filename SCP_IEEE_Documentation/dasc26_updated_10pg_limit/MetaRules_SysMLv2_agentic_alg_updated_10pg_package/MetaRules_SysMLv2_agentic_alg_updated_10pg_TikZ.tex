@@ -11,6 +11,7 @@
 \usepackage{listings}
 \usepackage{dblfloatfix} % Fix for float placement on pages
 \usepackage{cuted} % inline full-width strips for side-by-side algorithm/description
+\usepackage{pbalance}
 %%%
 %---------
 % Appendix figure (TikZ) --------------------
@@ -215,15 +216,16 @@ Solved requirement-to-contract episodes play the role of worked proof cases; a c
 %Operationally, Meta-Rules function as a verifiable surrogate for weight adaptation: the copilot’s behavior is shaped by persistent symbolic assets rather than by modifying model parameters. This provides (i) inspectability for human stakeholders, (ii) repeatability across runs, and (iii) compatibility with certification-oriented governance practices.
 
 \subsection{Operational Modes of Use: User Mode vs.\ Developer Mode}
-Operationally, we distinguish two operational modes:
-\textbf{User Mode (application).} End users trigger the copilot with a low entry-point prompt that applies an existing, curated Meta-Rule library to translate requirements into candidate GUMBO contracts. The workflow then executes HAMR/Logika verification; failures trigger bounded, tool-guided repair until integration-level and code-level verification succeed.
-
-\textbf{Developer Mode (supervised self-adaptation learning).} Developers iteratively refine the Meta-Rule library itself. Adaptation is supervised and gated: candidate Meta-Rule modifications are treated as hypotheses and retained only if they improve measurable criteria, pass verification, and receive explicit human approval. This yields cumulative improvement without explicit base-model fine-tuning.
+Operationally, we distinguish two modes:
+\begin{itemize}
+\item \textbf{User Mode (application).} End users trigger the copilot with a low entry-point prompt that applies an existing, curated Meta-Rule library to translate requirements into candidate GUMBO contracts. The workflow then executes HAMR/Logika verification; failures trigger bounded, tool-guided repair until integration-level and code-level verification succeed.
+\item \textbf{Developer Mode (supervised self-adaptation learning).} Developers iteratively refine the Meta-Rule library itself. Adaptation is supervised and gated: candidate Meta-Rule modifications are treated as hypotheses and retained only if they improve measurable criteria, pass verification, and receive explicit human approval. This yields cumulative improvement without explicit base-model fine-tuning.
+\end{itemize}
 
 \subsubsection{Geometric Intuition: Practically Verified Semantic Cone}
 \label{sec:vsc-intuition}
 
-Figure~\ref{fig:vsc} provides an intuition for why Meta-Rules act as a verifiable surrogate for fine-tuning in SCP. After injecting a curated Meta-Rule candidate $\mathcal{R}$, verification-aligned performance forms a local maximum over the base-model manifold $\mathcal{M}$, centered around a golden example direction $\mathbf{g}$. The Meta-Rule \emph{range of effect} is modeled as an angular neighborhood ($\pm\varepsilon_{\max}$): increasing $\varepsilon$ expands the class of requirements and GUMBO contract patterns that can be produced from a small number of exemplars, while remaining inside the accepted budget-verifiable region. If the rule is applied too broadly, repair effort grows and the verifier rejects the candidate. Thus, rule applicability is tuned as an engineering operating point rather than as an unconstrained semantic maximum.
+Figure~\ref{fig:vsc} provides intuition for why Meta-Rules act as a verifiable surrogate for fine-tuning in SCP. After injecting a curated Meta-Rule candidate $\mathcal{R}$, verification-aligned performance forms a local maximum over the base-model manifold $\mathcal{M}$, centered around a golden example direction $\mathbf{g}$. The Meta-Rule \emph{range of effect} is modeled as an angular neighborhood ($\pm\varepsilon_{\max}$): increasing $\varepsilon$ expands the class of requirements and GUMBO contract patterns that can be produced from a small number of exemplars, while remaining inside the accepted budget-verifiable region. If the rule is applied too broadly, repair effort grows and the verifier rejects the candidate. Thus, rule applicability is tuned as an engineering operating point rather than as an unconstrained semantic maximum.
 
 \begin{figure}[t]
 \centering
@@ -234,9 +236,9 @@ Figure~\ref{fig:vsc} provides an intuition for why Meta-Rules act as a verifiabl
 \end{figure}
 
 \subsubsection{Example Meta-Rule}
-Listing~\ref{list:metaRules} shows an excerpt from the rule book used in our evaluation. The rule instructs the agent to introduce explicit state when the requirements imply memory (e.g., hysteresis bands, ``hold previous'' semantics, time-dependent predicates). Such rules were motivated by baseline failures in which the agent attempted incompatible idioms (e.g., AADL pre-state operators) and could not consistently realize SysML v2 GUMBO state syntax.
+Listing~\ref{list:metaRules} shows an excerpt from the rule book used in our evaluation. The rule instructs the agent to introduce explicit state when the requirements imply memory (e.g., hysteresis bands, ``hold previous'' semantics, time-dependent predicates). Such rules were motivated by baseline failures in which the agent attempted incompatible idioms (e.g., pre-state operators) and could not consistently realize SysML v2 GUMBO state syntax.
 
-\begin{lstlisting}[caption={Extract from Gumbo FSE Agent Plan: Meta-Rules for State Formalization.}, label={list:metaRules}]
+\begin{lstlisting}[caption={Extract from GUMBO FSE Agent Plan: Meta-Rules for State Formalization.}, label={list:metaRules}]
 /* * 2) WHEN TO USE EACH SECTION
  * 2.1 state
  * Add if the English requires memory:
@@ -254,7 +256,7 @@ state
 \label{sec:meta-learning}
 \subsection{The Algorithm}
 \label{sec:algorithm-loop}
-Algorithm~\ref{alg:meta-rules} introduces the algorithm as a dual-phase neuro-symbolic process. Let $R$ denote the target set of natural-language requirements, and let $\textsc{Sample}(R)\subset R$ denote the sampled training subset used in developer mode during Phase~I---in our setting, its size was 1/6 of $R$. Let $G=\{(r_g,g_g)\}$ denote the set of golden examples, where $r_g$ is a golden requirement and $g_g$ is its verified formalized GUMBO contract. Let $M$ denote the retained Meta-Rule library, $C$ the set of verified contracts, and $F$ the set of flagged failures.
+Algorithm~\ref{alg:meta-rules} introduces a dual-phase neuro-symbolic process. Let $R$ denote the target set of natural-language requirements, and let $\textsc{Sample}(R)\subset R$ denote the sampled training subset used in developer mode during Phase~I---in our setting, its size was 1/6 of $R$. Let $G=\{(r_g,g_g)\}$ denote the set of golden examples, where $r_g$ is a golden requirement and $g_g$ is its verified formalized GUMBO contract. Let $M$ denote the retained Meta-Rule library, $C$ the set of verified contracts, and $F$ the set of flagged failures.
 
 \textbf{Phase I: Meta-Rule extraction, sample-based training, and predictive $\epsilon$-learning.}
 For each golden pair $(r_g,g_g)\in G$, \textsc{ExtractRule} derives a candidate Meta-Rule $m$. For each sampled requirement $r\in \textsc{Sample}(R)$, \textsc{ApplyRule} uses $m$ to produce a candidate formalized contract $\hat{g}$. The quantity $\textsc{Distance}(\hat{g},g_g)$ denotes a \emph{semantic} distance between the generated formalized contract and the golden formalized contract, rather than a literal textual comparison. The threshold $\epsilon$ therefore controls the admissible degree of abstraction away from the golden exemplar. The objective is not to drive $\epsilon$ toward zero: if $\epsilon$ is too small, the rule becomes over-specialized and loses reusability; if $\epsilon$ is too large, the rule admits overly broad generations that require excessive repair or fail to verify within budget $B$. Accordingly, in developer mode $\epsilon$ is tuned across repeated calibration attempts to find a satisfactory intermediate value that best balances rule reuse and bounded repair. Verification is performed by $V(\hat{g},B)$, where $B$ is the repair budget in time and tokens for full repair cycles; the verifier returns a Boolean result $ok$ together with feedback $fb$. While \textsc{RepairBudgetRemaining}$(B)$ holds, \textsc{Repair}$(\hat{g},fb,B)$ revises the candidate using verifier feedback. The counter $okCount$ records how many sampled requirements are successfully verified for the candidate rule $m$, and $\tau$ is the minimum acceptance threshold required to retain $m$ in $M$. If performance is unsatisfactory, \textsc{DiscardOrRefineWithHuman}$(m)$ permits human refinement of the rule, of $\epsilon$, or both, and the developer-mode loop repeats.
@@ -380,7 +382,7 @@ Verification integration & Indirect & Indirect & Direct \\
 We use the Isolette Infant Incubator benchmark as a proxy for safety-critical subsystems~\cite{hatcliff2024isolette}. The goal is to translate natural-language requirements into SysML v2 GUMBO contracts and then discharge both integration-level and code-level verification obligations using the SCP Copilot Self-healing mechanism with minimal user intervention.
 
 \subsection{Experimental Inputs and Outputs}
-\textbf{Inputs.} The experiment uses (i) natural-language requirements provided in a realistic FAA-style source document (37+ pages) containing plain text, tables, and figures, and (ii) SysML v2 models and shared libraries representing the Isolette architecture (e.g., \texttt{Monitor.sysml}, \texttt{Regulate.sysml}, plus SysML\_AADL shared libraries).%Toadd a citation ~\cte{}).
+\textbf{Inputs.} The experiment uses (i) natural-language requirements provided in a realistic FAA-style source document (37+ pages) containing plain text, tables, and figures, and (ii) SysML v2 models and shared libraries representing the Isolette architecture (e.g., \texttt{Monitor.sysml}, \texttt{Regulate.sysml}, plus SysML standard libraries).%Toadd a citation ~\cte{}). 
 These artifacts intentionally include realistic friction: domain terminology, cross-references, and requirements that imply memory (hysteresis/latched state) that must be encoded using SysML v2 GUMBO constructs accepted by the toolchain.
 
 \textbf{Outputs.} The pipeline produces (i) SysML v2 models augmented with GUMBO contracts (including state/initialize/compute\_cases blocks), (ii) HAMR-generated implementation artifacts, and (iii) verification logs demonstrating successful discharge of Logika proof obligations for both model integration and code-level execution.
@@ -392,10 +394,10 @@ We compare two conditions:
 
 \textbf{Baseline (prompt-only ICL).} A Codex-class agent is tasked to read the requirement document and directly generate correct SysML v2 GUMBO contracts without an external Meta-Rule library. This relies on transient in-context learning and ad-hoc prompt conditioning.
 
-\textbf{Meta-Rule--guided SCP.} The same overall task is executed using a curated Meta-Rule library (Section~\ref{sec:approach}). The copilot is triggered with a low entry-point prompt, applies the rule book to guide formalization, and then executes a bounded generate--verify--repair loop driven by HAMR/Logika feedback. Importantly, the Meta-Rules used in this condition are treated as persistent engineering artifacts: they are created/refined in developer mode and retained only if they satisfy the acceptance gates described in Section~\ref{sec:approach} (semantic improvement where golden references exist, verification success, and human approval).
+\textbf{Meta-Rule--guided SCP.} The same overall task is executed using a curated Meta-Rule library (Section~\ref{sec:approach}). The copilot is triggered with a low entry-point prompt, it applies the rule book to guide formalization, and then executes a bounded generate--verify--repair loop driven by HAMR/Logika feedback. Importantly, the Meta-Rules used in this condition are treated as persistent engineering artifacts: they are created/refined in developer mode and retained only if they satisfy the acceptance gates described in Section~\ref{sec:approach} (semantic improvement where golden references exist, verification success, and human approval).
 
 \subsection{Moment 1: Baseline Failure (Token Explosion and Tool Mismatch)}
-In the initial evaluation, the baseline using Codex GPT-5.1 Max failed to encode requirements that implied memory (hysteresis, ``no change'') in SysML v2 GUMBO. Listing~\ref{list:failureLog} shows the failure transcript: the agent repeatedly attempts incompatible pre-state idioms (e.g., \texttt{@pre}) and cannot converge on tool-accepted SysML v2 state syntax. This failure manifests as rapid token growth with no verifiable outcome.
+In the initial evaluation, the baseline using Codex GPT-5.1 Max failed to encode requirements that implied memory (hysteresis, ``no change'') in SysML v2 GUMBO. Listing~\ref{list:failureLog} shows the failure transcript: the agent repeatedly attempts incompatible pre-state idioms (e.g., \texttt{@pre}) and cannot converge on tool-accepted GUMBO state syntax. This failure manifests as rapid token growth with no verifiable outcome.
 
 \begin{lstlisting}[caption={Condensed baseline failure excerpt: parser rejection and high token usage.}, label={list:failureLog}, float=t]
 Baseline: 33 min; no verified artifact.
@@ -410,7 +412,7 @@ Tokens: input=981,770 (+18,673,920 cached),
 \textbf{Connection to the comparison.} This is a concrete instance of the limitations discussed in Section~\ref{sec:comparison}: prompt-only ICL is ephemeral and does not reliably internalize niche toolchain syntax, leading to long-context retries and token explosion. A standard remedy would be domain fine-tuning; however, fine-tuning frontier proprietary models was not available in our setting (vendor restrictions). This motivates a persistent, auditable specialization mechanism that does not require weight updates.
 
 \subsection{Moment 2: Success via Meta-Rules (Generate--Verify--Repair Under Gates)}
-Upon applying the curated Meta-Rules (e.g., Listing~\ref{list:metaRules}), the SCP copilot successfully formalized the requirements, inserted tool-accepted SysML v2 GUMBO blocks (including state for hysteresis), and completed both integration-level and code-level verification. Listing~\ref{list:successLog} summarizes the successful run.
+Upon applying the curated Meta-Rules (e.g., Listing~\ref{list:metaRules}), the SCP copilot successfully formalized the requirements, inserted tool-accepted GUMBO blocks into the model (including state for hysteresis), and completed both integration-level and code-level verification. Listing~\ref{list:successLog} summarizes the successful run.
 
 \begin{lstlisting}[caption={Condensed Meta-Rule-guided success excerpt: verified target scope.}, label={list:successLog}, float=t]
 Meta-Rules: ~25 min; complete success.
@@ -537,7 +539,7 @@ More broadly, the results suggest that future progress in high-assurance copilot
 
 LLMs have increasingly been used to assist formal reasoning and proof engineering. Early work such as GPT-f explored generative theorem proving in Metamath~\cite{polu2020generative}, while later systems studied whole-proof generation, proof repair, and diagnosis in proof assistants such as Isabelle/HOL and Coq~\cite{first2023baldur,CoqDog}. In code verification, neuro-symbolic workflows have also appeared around F*~\cite{DBLP:conf/popl/SwamyHKRDFBFSKZ16}, SMT-backed hallucination checks~\cite{aws_bedrock_ar}, and symbolic reasoning benchmarks such as GSM-Symbolic~\cite{mirzadeh2025gsmsymbolic}.
 
-Formal methods are also being integrated into MBSE standards and tools. SysML v2 was designed with formal semantics in mind~\cite{sysmlv2}, and Imandra has demonstrated model-level SysML v2 verification~\cite{imandra_sysml}. Closer to our architecture, AGREE-Dog introduced a neuro-symbolic copilot for AADL/AGREE model repair~\cite{agreedog_tahat2025,feiler-aadl}. Our contribution differs by integrating the INSPECTA SCP path from English requirements to SysML v2/GUMBO contracts, HAMR-generated code, and Logika proof discharge, thereby targeting end-to-end verified implementation rather than only model-level analysis.
+Formal methods are also being integrated into MBSE standards and tools. SysML v2 was designed with formal semantics in mind~\cite{sysmlv2}, and Imandra has demonstrated model-level SysML v2 verification~\cite{imandra_sysml}. Closer to our architecture, AGREE-Dog introduced a neuro-symbolic copilot for AADL/AGREE model repair~\cite{agreedog_tahat2025,feiler-aadl}. Our contribution differs by integrating the INSPECTA SCP path from natural language requirements to GUMBO contracts, HAMR-generated code, and Logika proof discharge, thereby targeting end-to-end verified implementation rather than only model-level analysis.
 
 %==========
 %\todo{Limitations and future work section (context-window dependence, generalization to other systems such as firewall/security-policy, human approval latency, etc.).}
@@ -545,15 +547,15 @@ Formal methods are also being integrated into MBSE standards and tools. SysML v2
 \section{Limitations and Future Work}
 \label{sec:limitations}
 
-This evaluation is an initial study over the Isolette target scope, not a claim of universal generalization. Future work will expand evaluation to heterogeneous cyber-physical and security components, including seL4-based firewall architectures~\cite{Hatcliff:seL4Summit2025}; extend the self-healing loop from Scala/Slang to Rust/Verus application code using repair heuristics inspired by \textsc{VeriStruct}~\cite{sun2025veristruct}; and scale verification through cloud execution, multimodal physically-aware specification, and compositional reasoning advances in GUMBO/AGREE~\cite{compositional-analysis-agree,agreedog_tahat2025}. Further details can be provided in an extended version of this paper.
+This evaluation is an initial study over the Isolette target scope, not a claim of universal generalization. Future work will expand evaluation to heterogeneous cyber-physical and security components, including seL4-based firewall architectures~\cite{Hatcliff:seL4Summit2025}; extend the self-healing loop from Scala/Slang to Rust/Verus application code using repair heuristics inspired by \textsc{VeriStruct}~\cite{sun2025veristruct}; and scale verification through cloud execution, multimodal physically-aware specification, and compositional reasoning advances in GUMBO/AGREE~\cite{compositional-analysis-agree,agreedog_tahat2025}. Further details will be provided in an extended version of this paper\footnote{To be made available following review process.}.
 %====================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper shows that persistent, verifier-gated Meta-Rules can turn transient LLM formalization behavior into reusable engineering knowledge for high-assurance MBSE. Integrated with INSPECTA, the SCP copilot converts English requirements into SysML v2/GUMBO contracts, HAMR-generated code, and Logika-verified artifacts. On the Isolette target scope, Meta-Rules converted a failing prompt-only run into a verified run while reducing token and time costs, supporting a practical path toward auditable, certification-facing automation.
+This paper shows that persistent, verifier-gated Meta-Rules can turn transient LLM formalization behavior into reusable engineering knowledge for high-assurance MBSE. Integrated with INSPECTA, the SCP copilot converts natural language requirements into GUMBO contracts for SysML v2 models, HAMR-generated code, and Logika-verified artifacts. On the Isolette target example, Meta-Rules converted a failing prompt-only run into a verified run while reducing token and time costs, supporting a practical path towards auditable, certification-ready automation.
 
 \section*{Acknowledgment}
-This work was funded by DARPA contract [insert complete contract number]. The views, opinions, and/or findings expressed are those of the authors and should not be interpreted as representing the official views or policies of DARPA, the U.S. Department of Defense, or the U.S. Government.
+This work was funded by DARPA. The views, opinions, and/or findings expressed are those of the authors and should not be interpreted as representing the official views or policies of DARPA, the U.S. Department of Defense, or the U.S. Government.
 
 %====================================================================
 % Appendices removed for the 10-page IEEE submission.
