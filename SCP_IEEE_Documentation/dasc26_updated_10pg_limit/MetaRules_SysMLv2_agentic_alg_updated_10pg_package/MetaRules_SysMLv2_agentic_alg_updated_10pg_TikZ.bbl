@@ -23,8 +23,8 @@
 
 \bibitem{hardin2025dasc}
 D.~Hardin, I.~Amundson, J.~Babar, D.~Cofer, S.~Hasan, K.~Hoech, J.~Belt,
-  J.~Hatcliff, Robby, and S.~Hallerstede, ``Automated sysml v2 system model to
-  memory-safe language code generation for avionics applications,'' in
+  J.~Hatcliff, Robby, and S.~Hallerstede, ``Automated {SysML} v2 system model
+  to memory-safe language code generation for avionics applications,'' in
   \emph{Proceedings of the IEEE/AIAA Digital Avionics Systems Conference
   (DASC)}, 2025, author version / preprint (uploaded as hardin2025dasc.pdf).
 
@@ -37,8 +37,8 @@ D.~Hardin, I.~Amundson, J.~Babar, D.~Cofer, S.~Hasan, K.~Hoech, J.~Belt,
 \BIBentryALTinterwordspacing
 S.~Bubeck, C.~Coester, R.~Eldan, T.~Gowers, Y.~T. Lee, A.~Lupsasca, M.~Sawhney,
   R.~Scherrer, M.~Sellke, B.~K. Spears, D.~Unutmaz, K.~Weil, S.~Yin, and
-  N.~Zhivotovskiy, ``Early science acceleration experiments with gpt-5,'' 2025.
-  [Online]. Available: \url{https://arxiv.org/abs/2511.16072}
+  N.~Zhivotovskiy, ``Early science acceleration experiments with {GPT}-5,''
+  2025. [Online]. Available: \url{https://arxiv.org/abs/2511.16072}
 \BIBentrySTDinterwordspacing
 
 \bibitem{gpt5-system-card}
@@ -48,19 +48,20 @@ S.~Bubeck, C.~Coester, R.~Eldan, T.~Gowers, Y.~T. Lee, A.~Lupsasca, M.~Sawhney,
 
 \bibitem{e28030332}
 \BIBentryALTinterwordspacing
-A.~Achille and S.~Soatto, ``Ai agents as universal task solvers,''
+A.~Achille and S.~Soatto, ``{AI} agents as universal task solvers,''
   \emph{Entropy}, vol.~28, no.~3, 2026. [Online]. Available:
   \url{https://www.mdpi.com/1099-4300/28/3/332}
 \BIBentrySTDinterwordspacing
 
 \bibitem{sysmlv2_model_formalism_wg}
-{Object Management Group (OMG)}, ``Sysml v2 model formalism working group,''
+{Object Management Group ({OMG})}, ``{SysML} v2 model formalism working
+  group,''
   \url{https://www.omgwiki.org/OMGSysML/doku.php?id=sysml-roadmap:sysml_v2_model_formalism_working_group},
   accessed: 2026-02-10.
 
 \bibitem{sysmlv2_omg}
 \BIBentryALTinterwordspacing
-{Object Management Group}, ``Omg system modeling language (sysml) v2
+{Object Management Group}, ``{OMG} system modeling language ({SysML}) v2
   specification,'' 2025. [Online]. Available:
   \url{https://www.omg.org/spec/SYSML}
 \BIBentrySTDinterwordspacing
@@ -118,21 +119,11 @@ J.~von Oswald, E.~Niklasson, E.~Randazzo, J.~Sacramento, A.~Mordvintsev,
   Blog Post}, 2024, accessed: 2025-05-11.
 
 \bibitem{hatcliff2024isolette}
-J.~Hatcliff \emph{et~al.}, ``The isolette system: Illustrating end-to-end
+J.~Hatcliff \emph{et~al.}, ``The {I}solette system: Illustrating end-to-end
   artifacts for rigorous model-based engineering,'' in \emph{International
   Symposium On Leveraging Applications of Formal Methods, Verification and
   Validation (ISoLA)}, 2024, author version (uploaded as
   Hatcliff-etal-ISOLA2024-Isolette-Overview.pdf).
-
-\bibitem{slides}
-A.~Tahat \emph{et~al.}, ``Neurosymbolic automated contract and code generation
-  for sysml v2 models,'' in \emph{Collins Aerospace}, 2026, author version /
-  preprint (uploaded as slides.pdf).
-
-\bibitem{SteveMillerGuideBook}
-{Federal Aviation Administration}, ``{FAA Requirements Guidebook used as the
-  Isolette natural-language source},'' n.d., citation placeholder; replace with
-  the final source information.
 
 \bibitem{polu2020generative}
 S.~Polu and I.~Sutskever, ``Generative language modeling for automated theorem
@@ -178,21 +169,21 @@ S.~I. Mirzadeh, K.~Alizadeh, H.~Shahrokhi, O.~Tuzel, S.~Bengio, and
 \BIBentrySTDinterwordspacing
 
 \bibitem{sysmlv2}
-{Object Management Group (OMG)}, ``Systems modeling language (sysml) v2
+{Object Management Group ({OMG})}, ``Systems modeling language ({SysML}) v2
   specification,'' \href{https://github.com/Systems-Modeling/SysML-v2-Release},
   2024, accessed: 2025-05-19.
 
 \bibitem{imandra_sysml}
 \BIBentryALTinterwordspacing
-{Imandra}, ``Imandra sysml: Formal verification for sysml v2 models,'' 2024.
-  [Online]. Available: \url{https://www.imandra.ai/sysml}
+{Imandra}, ``Imandra {SysML}: Formal verification for {SysML} v2 models,''
+  2024. [Online]. Available: \url{https://www.imandra.ai/sysml}
 \BIBentrySTDinterwordspacing
 
 \bibitem{agreedog_tahat2025}
 \BIBentryALTinterwordspacing
-A.~Tahat, I.~Amundson, D.~Hardin, and D.~Cofer, ``Agree-dog copilot: A
+A.~Tahat, I.~Amundson, D.~Hardin, and D.~Cofer, ``{AGREE-Dog} copilot: A
   neuro-symbolic approach to enhanced model-based systems engineering,'' in
-  \emph{Bridging the Gap Between AI and Reality (AISoLA 2025), Selected
+  \emph{Bridging the Gap Between {AI} and Reality (AISoLA 2025), Selected
   Papers}, 2025. [Online]. Available:
   \url{https://link.springer.com/chapter/10.1007/978-3-032-07132-3_8}
 \BIBentrySTDinterwordspacing
@@ -214,7 +205,7 @@ J.~Hatcliff, ``Model-based development for {seL4} {Microkit/Rust} with
 \bibitem{sun2025veristruct}
 \BIBentryALTinterwordspacing
 C.~Sun, Y.~Sun, D.~Amrollahi, E.~Zhang, S.~Lahiri, S.~Lu, D.~Dill, and
-  C.~Barrett, ``{VeriStruct}: Ai-assisted automated verification of
+  C.~Barrett, ``{VeriStruct}: {AI}-assisted automated verification of
   data-structure modules in verus,'' 2025. [Online]. Available:
   \url{https://arxiv.org/abs/2510.25015}
 \BIBentrySTDinterwordspacing

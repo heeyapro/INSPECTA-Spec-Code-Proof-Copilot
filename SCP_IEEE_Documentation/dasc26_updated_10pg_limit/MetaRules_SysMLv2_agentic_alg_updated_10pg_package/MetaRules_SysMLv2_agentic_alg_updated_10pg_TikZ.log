@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  27 APR 2026 08:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.18)  3 MAY 2026 01:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -915,22 +915,22 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.aux)
 \openout1 = `MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
 
 -- Lines per column: 56 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -956,7 +956,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box80
-Package hyperref Info: Link coloring OFF on input line 52.
+Package hyperref Info: Link coloring OFF on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -969,9 +969,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count327
 )
-LaTeX Info: Redefining \ref on input line 52.
-LaTeX Info: Redefining \pageref on input line 52.
-LaTeX Info: Redefining \nameref on input line 52.
+LaTeX Info: Redefining \ref on input line 53.
+LaTeX Info: Redefining \pageref on input line 53.
+LaTeX Info: Redefining \nameref on input line 53.
 
 (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.out)
 (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.out)
@@ -983,15 +983,6 @@ LaTeX Info: Redefining \nameref on input line 52.
 ABD: EveryShipout initializing macros
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
-
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Warning: No \author given.
 
 
 Underfull \hbox (badness 1360) in paragraph at lines 67--68
@@ -1008,12 +999,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 4193) in paragraph at lines 90--92
-[]\OT1/ptm/m/n/10 As a re-sult, these re-stric-tions leave three ca-pa-bil-i-
- []
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
@@ -1032,58 +1018,61 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 177.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [3]
 (./figures/vsc_tikz.tex)
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2790) has occurred while \output is active []
 
  [4]
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 295.
+(Font)              using `OT1/ptm/m/sc' instead on input line 298.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 295.
+(Font)              using `OT1/ptm/m/sc' instead on input line 298.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 295.
+(Font)              using `OT1/ptm/m/sc' instead on input line 298.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 311.
+(Font)              using `OT1/ptm/m/sc' instead on input line 314.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-Underfull \hbox (badness 1454) in paragraph at lines 325--329
+Underfull \hbox (badness 1454) in paragraph at lines 328--332
 []\OT1/ptm/m/n/10 While Meta-Rule ex-trac-tion and val-i-da-tion are highly
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 325--329
+Underfull \hbox (badness 1603) in paragraph at lines 328--332
 \OT1/ptm/m/n/10 au-to-mated, hu-man over-sight re-mains es-sen-tial to en-sure
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 386--387
+Underfull \hbox (badness 4048) in paragraph at lines 389--390
 \OT1/ptm/m/n/10 com-prised the se-lected Mon-i-tor and Reg-u-late threads,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--387
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 \OT1/ptm/m/n/10 the as-so-ci-ated GUMBO contract-bearing blocks and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--387
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 \OT1/pcr/m/n/10 compute_cases \OT1/ptm/m/n/10 gen-er-ated or mod-i-fied for tho
 se
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 386--387
+Underfull \hbox (badness 2538) in paragraph at lines 389--390
 \OT1/ptm/m/n/10 threads, and the cor-re-spond-ing HAMR-generated proof-
  []
 
@@ -1102,11 +1091,7 @@ ng it (it is [0.0:0.0]) on input line 68.
  [warning /pgfplots/warning/approx empty range enlarged]
 Package pgfplots info on input line 68: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
-) [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-(./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.bbl
+) [8] [9] (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.bbl
 Underfull \hbox (badness 1558) in paragraph at lines 32--35
 []\OT1/ptm/m/n/8 OpenAI, ``GPT-5.2 Codex Sys-tem Card,'' []$https : / / openai 
 . com / index /
@@ -1119,12 +1104,7 @@ index /
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 57--60
-[]\OT1/ptm/m/n/8 Object Man-age-ment Group (OMG), ``Sysml v2 model for-mal-ism
- []
-
-
-Underfull \hbox (badness 1565) in paragraph at lines 181--184
+Underfull \hbox (badness 1565) in paragraph at lines 172--175
 []\OT1/ptm/m/n/8 Object Man-age-ment Group (OMG), ``Sys-tems mod-el-ing lan-gua
 ge
  []
@@ -1142,22 +1122,26 @@ Before submitting the final camera ready copy, remember to:
  process uses the appropriate paper size.
 
 [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 734.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 734.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 747.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 747.
  (./MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 734.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 734.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 747.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 747.
 Package rerunfilecheck Info: File `MetaRules_SysMLv2_agentic_alg_updated_10pg_T
 ikZ.out' has not changed.
 (rerunfilecheck)             Checksum: F411CC21BD97F393F2D3B207CD5E88AC;2395.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 734.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 747.
  ) 
 Here is how much of TeX's memory you used:
- 34056 strings out of 481239
- 800499 string characters out of 5920377
- 1210484 words of memory out of 5000000
- 48594 multiletter control sequences out of 15000+600000
- 598696 words of font info for 139 fonts, out of 8000000 for 9000
+ 34055 strings out of 481239
+ 800465 string characters out of 5920377
+ 1210429 words of memory out of 5000000
+ 48592 multiletter control sequences out of 15000+600000
+ 598014 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,19n,127p,1753b,2617s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1187,10 +1171,10 @@ rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on MetaRules_SysMLv2_agentic_alg_updated_10pg_TikZ.pdf (10 pages
-, 366399 bytes).
+, 370318 bytes).
 PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
- 462 compressed objects within 5 object streams
- 132 named destinations out of 1000 (max. 500000)
+ 510 PDF objects out of 1000 (max. 8388607)
+ 464 compressed objects within 5 object streams
+ 133 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 

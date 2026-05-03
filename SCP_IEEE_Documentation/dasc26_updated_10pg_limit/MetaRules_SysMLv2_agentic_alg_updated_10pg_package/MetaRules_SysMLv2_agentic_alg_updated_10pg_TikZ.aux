@@ -40,8 +40,8 @@
 \newlabel{sec:gumbo}{{\mbox  {II-A}}{2}{INSPECTA High-Assurance System Development and Verification}{subsection.2.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Agentic SCP/INSPECTA workflow integrating the high-assurance development layers with a Meta-Rule-guided generate--verify--repair loop. Green dashed arrows denote successful proof artifacts; the red dashed arrow denotes verifier-failure diagnostics returned to the repair agent for a bounded retry.}}{3}{figure.1}\protected@file@percent }
 \newlabel{fig:agentic-inspecta}{{1}{3}{Agentic SCP/INSPECTA workflow integrating the high-assurance development layers with a Meta-Rule-guided generate--verify--repair loop. Green dashed arrows denote successful proof artifacts; the red dashed arrow denotes verifier-failure diagnostics returned to the repair agent for a bounded retry}{figure.1}{}}
-\newlabel{lst:gumbo-skel}{{1}{3}{Illustrative skeleton of a SysML v2 component with a GUMBO contract}{lstlisting.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Illustrative skeleton of a SysML v2 component with a GUMBO contract.}{3}{lstlisting.1}\protected@file@percent }
+\newlabel{lst:gumbo-skel}{{1}{3}{Illustrative skeleton of a GUMBO contract on a SysML v2 component}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Illustrative skeleton of a GUMBO contract on a SysML v2 component.}{3}{lstlisting.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {III}Neuro-Symbolic Contract Generation with Meta-Rules: An Overview}{4}{section.3}\protected@file@percent }
 \newlabel{sec:approach}{{III}{4}{Neuro-Symbolic Contract Generation with Meta-Rules: An Overview}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Meta-Rules: Persistent, Auditable Formalization Abstractions}{4}{subsection.3.1}\protected@file@percent }
@@ -51,8 +51,8 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Practically verified semantic cone for supervised Meta-Rule refinement. A golden example direction $\mathbf  {g}$ anchors the accepted region; candidate generations within the cone are retained only when they produce practically verifiable specifications within the available budget, while candidates outside the cone are rejected.}}{4}{figure.2}\protected@file@percent }
 \newlabel{fig:vsc}{{2}{4}{Practically verified semantic cone for supervised Meta-Rule refinement. A golden example direction $\mathbf {g}$ anchors the accepted region; candidate generations within the cone are retained only when they produce practically verifiable specifications within the available budget, while candidates outside the cone are rejected}{figure.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Example Meta-Rule}{4}{subsubsection.3.2.2}\protected@file@percent }
-\newlabel{list:metaRules}{{2}{4}{Extract from Gumbo FSE Agent Plan: Meta-Rules for State Formalization}{lstlisting.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Extract from Gumbo FSE Agent Plan: Meta-Rules for State Formalization.}{4}{lstlisting.2}\protected@file@percent }
+\newlabel{list:metaRules}{{2}{4}{Extract from GUMBO FSE Agent Plan: Meta-Rules for State Formalization}{lstlisting.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Extract from GUMBO FSE Agent Plan: Meta-Rules for State Formalization.}{4}{lstlisting.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Supervised Meta-Rule Self-Adaptation (Learning) and Acceptance Criteria}{5}{section.4}\protected@file@percent }
 \newlabel{sec:meta-learning}{{IV}{5}{Supervised Meta-Rule Self-Adaptation (Learning) and Acceptance Criteria}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}The Algorithm}{5}{subsection.4.1}\protected@file@percent }
@@ -83,7 +83,6 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Experimental Settings}{7}{subsection.7.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Qualitative comparison of adaptation mechanisms for high-assurance pipelines.}}{7}{table.1}\protected@file@percent }
 \newlabel{tab:adaptation-compare}{{I}{7}{Qualitative comparison of adaptation mechanisms for high-assurance pipelines}{table.1}{}}
-\citation{slides}
 \citation{polu2020generative}
 \citation{first2023baldur,CoqDog}
 \citation{DBLP:conf/popl/SwamyHKRDFBFSKZ16}
@@ -92,16 +91,16 @@
 \citation{sysmlv2}
 \citation{imandra_sysml}
 \citation{agreedog_tahat2025,feiler-aadl}
-\citation{Hatcliff:seL4Summit2025}
-\citation{sun2025veristruct}
-\citation{compositional-analysis-agree,agreedog_tahat2025}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Metrics}{8}{subsection.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-C}}Performance Comparison}{8}{subsection.7.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-D}}Representative Results}{8}{subsection.7.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {VIII}Related Work}{8}{section.8}\protected@file@percent }
 \newlabel{sec:related-work}{{VIII}{8}{Related Work}{section.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Performance comparison between the prompt-only baseline and the Meta-Rule-guided SCP workflow. Vector PGFPlots charts report token use, wall-clock time, and verified throughput from the representative traces in Table\nobreakspace  {}\ref  {tab:results}.}}{9}{figure.3}\protected@file@percent }
-\newlabel{fig:resultsChart}{{3}{9}{Performance comparison between the prompt-only baseline and the Meta-Rule-guided SCP workflow. Vector PGFPlots charts report token use, wall-clock time, and verified throughput from the representative traces in Table~\ref {tab:results}}{figure.3}{}}
+\citation{Hatcliff:seL4Summit2025}
+\citation{sun2025veristruct}
+\citation{compositional-analysis-agree,agreedog_tahat2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Performance comparison between the prompt-only baseline and the Meta-Rule-guided SCP workflow. The charts report token use, wall-clock time, and verified throughput from the representative traces in Table\nobreakspace  {}\ref  {tab:results}.}}{9}{figure.3}\protected@file@percent }
+\newlabel{fig:resultsChart}{{3}{9}{Performance comparison between the prompt-only baseline and the Meta-Rule-guided SCP workflow. The charts report token use, wall-clock time, and verified throughput from the representative traces in Table~\ref {tab:results}}{figure.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Representative run metrics for the baseline and Meta-Rule-guided SCP conditions.}}{9}{table.2}\protected@file@percent }
 \newlabel{tab:results}{{II}{9}{Representative run metrics for the baseline and Meta-Rule-guided SCP conditions}{table.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {IX}Limitations and Future Work}{9}{section.9}\protected@file@percent }
@@ -126,19 +125,17 @@
 \bibcite{vonoswald2023transformers}{14}
 \bibcite{amazon2024mathematical}{15}
 \bibcite{hatcliff2024isolette}{16}
-\bibcite{slides}{17}
-\bibcite{SteveMillerGuideBook}{18}
-\bibcite{polu2020generative}{19}
-\bibcite{first2023baldur}{20}
-\bibcite{CoqDog}{21}
-\bibcite{DBLP:conf/popl/SwamyHKRDFBFSKZ16}{22}
-\bibcite{aws_bedrock_ar}{23}
-\bibcite{mirzadeh2025gsmsymbolic}{24}
-\bibcite{sysmlv2}{25}
-\bibcite{imandra_sysml}{26}
-\bibcite{agreedog_tahat2025}{27}
-\bibcite{feiler-aadl}{28}
-\bibcite{Hatcliff:seL4Summit2025}{29}
-\bibcite{sun2025veristruct}{30}
-\bibcite{compositional-analysis-agree}{31}
+\bibcite{polu2020generative}{17}
+\bibcite{first2023baldur}{18}
+\bibcite{CoqDog}{19}
+\bibcite{DBLP:conf/popl/SwamyHKRDFBFSKZ16}{20}
+\bibcite{aws_bedrock_ar}{21}
+\bibcite{mirzadeh2025gsmsymbolic}{22}
+\bibcite{sysmlv2}{23}
+\bibcite{imandra_sysml}{24}
+\bibcite{agreedog_tahat2025}{25}
+\bibcite{feiler-aadl}{26}
+\bibcite{Hatcliff:seL4Summit2025}{27}
+\bibcite{sun2025veristruct}{28}
+\bibcite{compositional-analysis-agree}{29}
 \@writefile{toc}{\contentsline {section}{References}{10}{section*.2}\protected@file@percent }

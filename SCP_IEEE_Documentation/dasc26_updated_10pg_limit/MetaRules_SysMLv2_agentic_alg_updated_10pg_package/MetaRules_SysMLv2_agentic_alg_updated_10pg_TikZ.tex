@@ -11,7 +11,7 @@
 \usepackage{listings}
 \usepackage{dblfloatfix} % Fix for float placement on pages
 \usepackage{cuted} % inline full-width strips for side-by-side algorithm/description
-\usepackage{pbalance}
+%\usepackage{pbalance}
 %%%
 %---------
 % Appendix figure (TikZ) --------------------
@@ -54,11 +54,10 @@
 
 \title{Bridging Natural Language to Verified Implementation: A Neuro-Symbolic High-Assurance MBSE Pipeline in SysML v2}
 
-%\author{\IEEEauthorblockN{Amer Tahat, David Hardin, Isaac Amundson, and Darren Cofer}
-%\IEEEauthorblockA{\textit{Collins Aerospace, An RTX Business} \\
-%\textit{DARPA PROVERS Program}\\
-%\{amer.tahat, david.hardin, isaac.amundson, darren.cofer\}@collins.com}
-%}
+\author{\IEEEauthorblockN{authors}}
+%\IEEEauthorblockA{\textit{Company } \\
+%\{authors}@company.com}
+
 
 \maketitle
 
@@ -69,7 +68,7 @@ To address these barriers, we introduce a neuro-symbolic \textbf{Spec--Code--Pro
 
 %We frame our work as a specialized paradigm called Formal Specification-Driven Development (FSDD). FSDD elevates formal specifications—contracts, verification conditions, and machine-checkable proofs—to first-class artifacts that drive generation, verification, and repair. Consequently, FSDD establishes formal proofs, rather than tests, as the primary acceptance gate within a given budget.
 
-We evaluate our methodology using an example sourced from the FAA Requirements Engineering Management Handbook. Our copilot achieved 100\% code-level verification and a 58$\times$ increase in development task throughput compared to a baseline that, lacking Meta-Rules, failed to produce verifiable artifacts. This demonstrates a practical path to certification-grade automation under strict data and model governance constraints, reconciling the efficiency of GenAI with the strict rigor required for certifiable critical system software.
+We evaluate our methodology using an example sourced from the FAA Requirements Engineering Management Handbook. Our copilot achieved 100\% code-level verification and a 28$\times$ increase in development task throughput compared to a baseline that, lacking Meta-Rules, failed to produce verifiable artifacts. This demonstrates a practical path to certification-grade automation under strict data and model governance constraints, reconciling the efficiency of GenAI with the strict rigor required for certifiable critical system software.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -469,16 +468,23 @@ The quantitative impact of Meta-Rules is visualized in Fig.~\ref{fig:resultsChar
 \begin{figure*}[t]
 \centering
 \input{figures/results_chart_pgfplots}
-\caption{Performance comparison between the prompt-only baseline and the Meta-Rule-guided SCP workflow. Vector PGFPlots charts report token use, wall-clock time, and verified throughput from the representative traces in Table~\ref{tab:results}.}
+\caption{Performance comparison between the prompt-only baseline and the Meta-Rule-guided SCP workflow. The charts report token use, wall-clock time, and verified throughput from the representative traces in Table~\ref{tab:results}.}
 \label{fig:resultsChart}
 \end{figure*}
 
 As illustrated in Fig.~\ref{fig:resultsChart}:
 \begin{itemize}
-    \item \textbf{Token efficiency:} The baseline consumed $\approx$19.0M input tokens and $\approx$18.0M cached tokens and still failed. With Meta-Rules, input tokens dropped to $\approx$4.9M and cached tokens to $\approx$4.3M, while verification succeeded.
+    \item \textbf{Token efficiency:} The baseline consumed total $\approx$19.75M input tokens and $\approx$18.6M cached tokens and still failed. With Meta-Rules, input total tokens dropped to $\approx$4.7M and cached tokens to $\approx$4.3M, while verification succeeded.
+    
     \item \textbf{Reasoning efficiency:} Reasoning tokens decreased from $\approx$54k to $\approx$36k, and output tokens decreased from $\approx$85k to $\approx$51.8k, consistent with reduced search and fewer failed retries.
-    \item \textbf{Wall-clock time:} Total runtime decreased from 33 minutes (failure) to $\approx$25 minutes (success).
-    \item \textbf{Verified throughput ($\Theta$):} Over the targeted proof-bearing units defined above, the Meta-Rule--guided approach achieved a reported $58\times$ improvement in verified throughput, i.e., $\Theta_{\mathrm{MR}} / \Theta_{\mathrm{Baseline}} = 58$, while also reaching end-to-end success. Table~\ref{tab:results} reports the corresponding scope and metric fields ($|U|$, $|U_{\mathrm{verified}}|$, $\rho$, $\Theta$, and $\kappa$) for both conditions.~\cite{slides}
+
+    \item \textbf{Wall-clock time:} Total runtime decreased from 33 minutes for the largely failing baseline to $\approx 25$ minutes for the fully successful Meta-Rule-guided run.
+    
+    \item \textbf{Verified throughput ($\Theta$):} Over the targeted proof-bearing units defined above, the Meta-Rule--guided approach achieved a reported $\approx 28\times$ improvement in verified throughput, i.e., $\Theta_{\mathrm{MR}} / \Theta_{\mathrm{Baseline}} \approx 28$, while also reaching end-to-end success. 
+    
+    \item \textbf{Token cost per verified unit ($\kappa$):} Meta-Rules reduced $\kappa$ from $\approx 9.87$M to $\approx 111$K tokens per verified unit, a nearly two-order-of-magnitude reduction ($\approx 89\times$ lower, or about $1.1\%$ of the baseline cost).
+    
+    Table~\ref{tab:results} reports the corresponding scope and metric fields ($|U|$, $|U_{\mathrm{verified}}|$, $\rho$, $\Theta$, and $\kappa$) for both conditions.%~\cite{slides}
 \end{itemize}
 \subsection{Representative Results}
 Table~\ref{tab:results} reports representative logs from the baseline and Meta-Rule-guided runs. The baseline failed to produce a verifier-accepted artifact despite substantially higher token expenditure, whereas the Meta-Rule-guided run completed both integration-level and code-level verification.
@@ -492,26 +498,29 @@ Table~\ref{tab:results} reports representative logs from the baseline and Meta-R
 \hline
 Metric & Baseline (prompt-only) & Meta-Rule-guided SCP \\
 \hline
-Verified artifact produced & No & Yes \\
-$T_{\mathrm{wall}}$ (minutes) & 33 & $\approx 25$ \\
+%Verified artifact produced & No & Yes \\
+$T_{\mathrm{wall}}$ (minutes) & 33 & $25$ \\
 $N_{\mathrm{in}}$ & 981,770 & 317,485 \\
 $N_{\mathrm{cache}}$ & 18,673,920 & 4,302,976 \\
 $N_{\mathrm{out}}$ & 85,833 & 51,833 \\
 $N_{\mathrm{reason}}$ & 54,080 & 36,032 \\
 $N_{\mathrm{total}}$ & 19,741,523 & 4,672,294 \\
-$|U|$ (targeted proof-bearing units) & \textit{[x count]} & \textit{[insert count]} \\
-$|U_{\mathrm{verified}}|$ (verified units) & \textit{[insert count]} & \textit{[insert count]} \\
-$\rho$ (verification coverage) & \textit{[insert]} & \textit{[insert]} \\
-$\Theta$ (verified throughput, units/min) & \textit{[insert]} & \textit{[insert]} \\
-$\kappa$ (token cost per verified unit) & \textit{[insert]} & \textit{[insert]} \\
+$|U|$ (targeted proof-bearing units) & \textit{42} & \textit{42} \\
+$|U_{\mathrm{verified}}|$ (verified units) & \textit{2} & \textit{42} \\
+$\rho$ (verification coverage) & \textit{$4.76\%$} & \textit{$100\%$} \\
+$\Theta$ (verified throughput, units/min) & \textit{0.06} & \textit{1.68} \\
+$\kappa$ (token cost per verified unit) & \textit{$\approx 9.87 M $} & \textit{$\approx 111K $} \\
 \hline
 \end{tabular}
 \end{table*}
 
 The quantitative impact of Meta-Rules is also visualized in Fig.~\ref{fig:resultsChart}. The orange bars represent the failing baseline with no Meta-Rules, while the blue bars represent the fine-tuned Meta-Rule-guided workflow.
 
-Several observations follow from Table~\ref{tab:results}. First, Meta-Rules convert a run with effectively unbounded cost per verified task into one that completes formal verification. Second, the successful run uses about $4.2\times$ fewer total tokens and about $4.3\times$ fewer cached input tokens than the failing baseline. Third, reasoning tokens fall from 54,080 to 36,032, consistent with the claim that the rule-guided workflow reduces unproductive search. Finally, wall-clock time decreases from 33 minutes to about 25 minutes while achieving complete verification with the reported $58\times$ improvement in verified throughput ($\Theta$), showing that reduced search cost is accompanied by a meaningful runtime gain rather than only by better final correctness.
+%Several observations follow from Table~\ref{tab:results}. First, Meta-Rules convert a run with effectively unbounded cost per verified task into one that completes formal verification. Second, the successful run uses about $\approx 89\times$ fewer total tokens per verified unit $ \kappa$ (or about $1.1\%$ of the baseline cost) than the baseline. Third, reasoning tokens fall from 54,080 to 36,032, consistent with the claim that the rule-guided workflow reduces the most expensive unproductive search. Finally, wall-clock time decreases from 33 minutes to about 25 minutes while achieving complete verification with the reported $\approx 28\times$ improvement in verified throughput ($\Theta$), showing that reduced search cost is accompanied by a meaningful runtime gain rather than only by better final correctness.
 
+%Several observations follow from Table~\ref{tab:results}. First, Meta-Rules convert a largely failing, low-coverage baseline run into one that completes formal verification. Second, cached input tokens decrease substantially, from $\approx 18.67$M to $\approx 4.30$M, reducing repeated context overhead and extending the agent's effective working budget. Third, reasoning tokens fall from 54,080 to 36,032, consistent with the claim that the rule-guided workflow reduces unproductive search. Finally, wall-clock time decreases from 33 minutes to about 25 minutes while achieving complete verification and improving verified throughput, $\Theta$, from $0.06$ to $1.68$ units/min, an approximately $28\times$ increase. Thus, reduced search cost is accompanied by a meaningful runtime gain, rather than only by better final correctness.
+
+Several observations follow from Table~\ref{tab:results}. First, Meta-Rules convert a largely failing baseline run into one that completes formal verification. Second, cached input tokens decrease substantially, from $\approx 18.67$M to $\approx 4.30$M, reducing context-replay overhead and preserving more of the execution budget for productive verification and repair. Third, reasoning tokens decrease from 54,080 to 36,032, consistent with the claim that the rule-guided workflow reduces the most expensive unproductive token-reasoning cost. Fourth, wall-clock time decreases from 33 minutes to about 25 minutes while achieving complete verification and improving verified throughput, $\Theta$, from $0.06$ to $1.68$ units/min, an approximately $28\times$ increase. Finally, the successful run reduces the token cost per verified unit, $\kappa$, by about $89\times$, from $\approx 9.87$M to $\approx 111$K tokens per verified unit, or to approximately $1.1\%$ of the baseline cost. Taken together, these results show that reduced search cost is accompanied by a meaningful runtime gain, rather than only by improved final correctness.
 % --- Section VIII removed from the submission version; kept here for traceability. ---
 \iffalse
 \section{Discussion: Why Meta-Rules Reduce Cost}
