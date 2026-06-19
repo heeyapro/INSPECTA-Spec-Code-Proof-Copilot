@@ -1,0 +1,52 @@
+name: INSPECTA Logika on Copilot Demo
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scp_demo_artifacts/isolette_io/**/*.sysml"
+      - ".github/workflows/inspecta-logika.yml"
+
+jobs:
+  inspecta-logika:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Show SysML v2 files
+        run: |
+          echo "SysML v2 files:"
+          find scp_demo_artifacts/isolette_io -name "*.sysml" -print
+
+      - name: Run INSPECTA Logika analysis
+        uses: loonwerks/INSPECTA-Logika-CI-Action@main
+        with:
+          sysmlv2-files: '[
+            "scp_demo_artifacts/isolette_io/Devices.sysml",
+            "scp_demo_artifacts/isolette_io/Isolette.sysml",
+            "scp_demo_artifacts/isolette_io/Isolette_Data_Model.sysml",
+            "scp_demo_artifacts/isolette_io/Isolette_Environment.sysml",
+            "scp_demo_artifacts/isolette_io/Monitor.sysml",
+            "scp_demo_artifacts/isolette_io/Operator_Interface.sysml",
+            "scp_demo_artifacts/isolette_io/Regulate.sysml",
+            "scp_demo_artifacts/isolette_io/Thermostat.sysml"
+          ]'
+          sourcepaths: '[
+            "scp_demo_artifacts/isolette_io",
+            "scp_demo_artifacts/isolette_io/sysml-aadl-libraries"
+          ]'
+          parseable-messages: "true"
+          control-options: '{"sat":"true"}'
+          smt2-options: '{"solver-sat":"z3","timeout":2}'
+
+      - name: Upload Logika JSON report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: inspecta-logika-report
+          path: logika-report.json
+          if-no-files-found: warn
