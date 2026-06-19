@@ -132,7 +132,7 @@ package Monitor {
 		attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
 		attribute :>> Period = 1000 [millisecond];
 		attribute Domain: CASE_Scheduling::Domain = 4;
-		attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+		attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 
 		// ==== INPUTS ====	(see Figure A.5)
 		//  operator specified alarm range
@@ -240,7 +240,7 @@ package Monitor {
 		attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
 		attribute :>> Period = 1000 [millisecond];
 		attribute Domain: CASE_Scheduling::Domain = 3;
-		attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+		attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 
 		// ==== INPUTS ========		
 		// current temperature from temp sensor
@@ -337,7 +337,7 @@ package Monitor {
 		attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
 		attribute :>> Period = 1000 [millisecond];
 		attribute Domain: CASE_Scheduling::Domain = 5;
-		attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+		attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 
 		// ======== INPUTS =======
 		// current temperature (from temp sensor)
@@ -422,7 +422,7 @@ package Monitor {
 		attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
 		attribute :>> Period = 1000 [millisecond];
 		attribute Domain: CASE_Scheduling::Domain = 6;
-		attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+		attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 
 		out port internal_failure : DataPort { out :> type : Isolette_Data_Model::Failure_Flag_i; }
 

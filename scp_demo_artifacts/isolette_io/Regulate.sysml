@@ -150,7 +150,7 @@ package Regulate {
         attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
         attribute :>> Period = 1000 [millisecond];
         attribute Domain: CASE_Scheduling::Domain = 7;
-        attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+        attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 
         // ==== INPUTS ====	(see Figure A.3)
         //  desired temperature from operator interface
@@ -266,7 +266,7 @@ package Regulate {
         attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
         attribute :>> Period = 1000 [millisecond];
         attribute Domain: CASE_Scheduling::Domain = 8;
-        attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+        attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 
         // ==== INPUTS ========		
             // current temperature from temp sensor
@@ -360,7 +360,7 @@ package Regulate {
         attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
         attribute :>> Period = 1000 [millisecond];
         attribute Domain: CASE_Scheduling::Domain = 9;
-        attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+        attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
         
         // ======== INPUTS =======
         // current temperature (from temp sensor)
@@ -450,7 +450,7 @@ package Regulate {
         attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
         attribute :>> Period = 1000 [millisecond];
         attribute Domain: CASE_Scheduling::Domain = 10;
-        attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+        attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
                 
         out port internal_failure : DataPort { out :> type : Isolette_Data_Model::Failure_Flag_i; }
 

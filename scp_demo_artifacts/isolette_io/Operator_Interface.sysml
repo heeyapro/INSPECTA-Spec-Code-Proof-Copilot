@@ -98,7 +98,7 @@ package Operator_Interface {
 		attribute :>> Dispatch_Protocol = Supported_Dispatch_Protocols::Periodic;
 		attribute :>> Period = 1000 [millisecond];
 		attribute Domain: CASE_Scheduling::Domain = 12;
-		attribute Microkit_Language: HAMR::Microkit_Language = HAMR::Microkit_Languages::Rust;
+		attribute Implementation_Language: HAMR::Implementation_Language = HAMR::Implementation_Languages::Rust;
 		
 		// ==== INPUTS from thermostat to operator interface
 		in port regulator_status : DataPort { in :> type : Isolette_Data_Model::Status; }
